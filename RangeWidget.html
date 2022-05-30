@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Range Widget</title>
+
+	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet" type="text/css" />
+      <script src = "https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js" type="text/javascript"></script>
+
+      
+      <script type="text/javascript">
+      		$(document).ready(function(){
+      			
+      			$("#ageRangeDiv").slider({
+      				orientation:"horizontal",
+      				min:20,
+      				max:200,
+      				value:30,
+      				slide: function(event,ui)
+      				{
+                      $("#ageValue").val(ui.value);
+                    }
+				});
+
+				$("#ageValue").val($("#ageRangeDiv").slider("value"));
+
+				$("#PriceValueDiv").slider({
+					range:true,
+					min:0,
+					max:500,
+					step:10,
+					values:[1,50],
+
+					start:function(event,ui){
+						 $("#startvalue").val("₹" + ui.values[0]);
+					},
+					stop:function(event,ui){
+						$("#endvalue").val("₹"+ui.values[1]);
+					},
+					 change: function (event, ui) {
+                      $("#changevalue").val("₹" + ui.values[0] + " - ₹" + ui.values[1]);
+      				},
+                  slide: function (event, ui) {
+                      $("#slidevalue")
+                     .val("₹" + ui.values[0] + " - ₹" + ui.values[1]);
+                  }
+				});
+      		});
+      </script>
+      <style type="text/css">
+            #ageValue
+            {
+                width:40px;
+                height:30px;
+                font-size:large;
+                font-weight:bold;
+                color:rgb(55, 20, 255);
+                background: rgb(255, 255, 255);
+                border-width: 0px ;
+
+            }
+            #ageRangeDiv,#PriceValue
+            {
+                width:300px;
+                background:rgb(199, 255, 192); 
+            }           }
+            #startvalue,#endvalue,#changevalue,#slidevalue
+            {
+                width:150px;
+                height:30px;
+                font-size:large;
+                font-weight:bold;
+                color:rgb(59, 255, 20);
+            }
+      </style>
+</head>
+<body>
+	 <p>
+         <label for="ageValue">Enter Your age:</label>
+        <input type="text" id="ageValue" disabled="true"/> 
+       
+      </p>
+      
+      <div id="ageRangeDiv"></div>
+      
+      <hr />
+
+      <div id = "PriceValueDiv" ></div>
+
+      <p>
+         <label for = "startvalue">Start Value:</label>
+         <input type = "text" id = "startvalue" disabled="true">
+      </p>
+      <p>
+         <label for = "endvalue">End Value:</label>
+         <input type = "text" id = "endvalue" disabled="true">
+      </p>
+      <p>
+         <label for = "changevalue">Change In Range:</label>
+         <input type = "text" id = "changevalue" disabled="true">
+      </p>
+      <p>
+         <label for = "slidevalue">Slide Gap Value:</label>
+         <input type = "text" id = "slidevalue" disabled="true">
+      </p>
+
+
+</body>
+</html>
